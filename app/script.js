@@ -8,7 +8,7 @@ const App = () => {
   const [time, setTime] = useState(0);
   const [timer, setTimer] = useState(null);
 
-
+  // 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
@@ -26,9 +26,11 @@ const App = () => {
 
   useEffect(()=>{
     if(time === 0 && status === 'work'){
+      playBell();
       setTime(20);
       setStatus('rest');
     } else if(time === 0 && status === 'rest'){
+      playBell();
       setTime(1200);
       setStatus('work');
     }
@@ -43,6 +45,11 @@ const App = () => {
   const closeApp = () => {
     window.close();
   };
+
+  const playBell = () => {
+  const bell = new Audio('./sounds/bell.wav');
+  bell.play();
+};
   
 
   return (
